@@ -22,3 +22,7 @@ resets the card back to its original state.
 
 ![alt text](/states/state-3.png "Logo Title Text 1")
 
+### to run
+
+python -m SimpleHTTPServer 8000
+goto store/html

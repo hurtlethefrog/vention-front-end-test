@@ -1,5 +1,4 @@
-{
-  "flowers": [
+[
     {
       "blue": {
         "name": "Blue Flower",
@@ -28,4 +27,3 @@
       }
     }
   ]
-}

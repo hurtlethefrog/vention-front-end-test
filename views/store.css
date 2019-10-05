@@ -1,0 +1,31 @@
+#div1 {
+    display:flex;
+    justify-content: space-between
+}
+
+.dullStar {
+    opacity:0.3
+}
+
+.flowerImage {
+    /* border-bottom: 1px solid lightgrey; */
+    border: 1px solid black;
+
+    width: 88%;
+    height: 88%
+}
+
+.flowerInfo {
+    position:relative;
+    top:10px;
+}
+
+.title {
+    font-family: Helvetica; 
+    font-weight: 500
+}
+
+.price {
+    top:2px;
+    position:relative
+}

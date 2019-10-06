@@ -1,3 +1,4 @@
+// export this
 const loadJSON = (path, success, error) => {
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
@@ -20,11 +21,12 @@ const rating = (ele, rating) => {
     if (i >= rating) {
       dullStar = document.createElement("img");
       dullStar.setAttribute("src", "../assets/star.svg");
-      dullStar.className = "dullStar";
+      dullStar.className = "dullStar star";
       ele.appendChild(dullStar);
     } else {
       fullStar = document.createElement("img");
       fullStar.setAttribute("src", "../assets/star.svg");
+      fullStar.className = "star";
       ele.appendChild(fullStar);
     }
   }

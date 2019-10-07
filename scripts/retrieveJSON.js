@@ -5,8 +5,10 @@ import {cartTag, mouseOffAddRemoveButton, mouseOverAddRemoveButton} from "./help
 loadJSON(
   "../server/inventoryData.json",
   function(data) {
+    //used to track itteration of map function  
     let i = 1;
     data.map(element => {
+      // creating all the html elements
       let parentDiv = document.createElement("div");
       let newImg = document.createElement("img");
       let imgDiv = document.createElement("div");
@@ -17,51 +19,20 @@ loadJSON(
       let cartDiv = document.createElement("div");
       let addCart = document.createElement("div");
       let removeCart = document.createElement("div");
-
+      //adding img src
       newImg.setAttribute("src", `${element.image}`);
+
+      //event handlers not handled by css
       imgDiv.onclick = cartTag
-      //() => {
-      //   let id = i;
-      //   console.log(`clicked  cartDiv${id}`);
-      //   let x = document.getElementById(`cartDiv${id}`);
-      //   if (x.style.display === "none") {
-      //     x.style.display = "block";
-      //   } else {
-      //     x.style.display = "none";
-      //   }
-      //   let y = document.getElementById(`addCart${id}`);
-      //   let z = document.getElementById(`removeCart${id}`);
-      //   if (y.style.display === "block") {
-      //     y.style.display = "none";
-      //     z.style.display = "block";
-      //   } else {
-      //     z.style.display = "none";
-      //     y.style.display = "block";
-      //   }
-      // };
       imgDiv.onmouseover = mouseOverAddRemoveButton
-      // () => {
-      //   let id = i;
-      //   let add = document.getElementById(`addCart${id}`);
-      //   let remove = document.getElementById(`removeCart${id}`);
-
-      //   add.style.opacity = 1;
-      //   remove.style.opacity = 1;
-      // };
       imgDiv.onmouseout = mouseOffAddRemoveButton
-      // () => {
-      //   let id = i;
-      //   let add = document.getElementById(`addCart${id}`);
-      //   let remove = document.getElementById(`removeCart${id}`);
 
-      //   add.style.opacity = 0;
-      //   remove.style.opacity = 0;
-      // };
-
+      //adding inline style for visibility
       cartDiv.setAttribute("style", "display:none;");
       addCart.setAttribute("style", "display:block;opacity:0;");
       removeCart.setAttribute("style", "display:none;opacity:0;");
 
+      //class names and ids
       titleDiv.className = "title";
       priceDiv.className = "price";
       parentDiv.className = "flowerCard";
@@ -76,6 +47,7 @@ loadJSON(
       removeCart.id = `removeCart${i}`;
       removeCart.className = "removeCart toggle";
 
+      //text nodes
       let title = document.createTextNode(element.name);
       titleDiv.appendChild(title);
       let price = document.createTextNode(
@@ -88,11 +60,13 @@ loadJSON(
       let addCartText = document.createTextNode("Add to cart");
       let removeCartText = document.createTextNode("Remove from cart");
 
+      //placing text in correct divs
       priceDiv.appendChild(price);
       cartDiv.appendChild(inCart);
       addCart.appendChild(addCartText);
       removeCart.appendChild(removeCartText);
 
+      //assembling html elements
       flowerInfo.appendChild(titleDiv);
       flowerInfo.appendChild(priceDiv);
       flowerInfo.appendChild(ratingDiv);
@@ -103,10 +77,13 @@ loadJSON(
       parentDiv.appendChild(imgDiv);
       parentDiv.appendChild(flowerInfo);
 
+      //creating the star rating div
       rating(ratingDiv, element.rating);
 
+      //appending everything above to root div
       let currentDiv = document.getElementById("div1");
       currentDiv.appendChild(parentDiv);
+      //increment itteration
       i++;
     });
     i = 1;

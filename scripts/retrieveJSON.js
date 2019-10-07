@@ -1,47 +1,6 @@
-// export this
-const loadJSON = (path, success, error) => {
-  var xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === XMLHttpRequest.DONE) {
-      if (xhr.status === 200) {
-        if (success) success(JSON.parse(xhr.responseText));
-      } else {
-        if (error) error(xhr);
-      }
-    }
-  };
-  xhr.open("GET", path, true);
-  xhr.send();
-};
-// export this
-const rating = (ele, rating) => {
-  for (i = 0; i < 5; i++) {
-    let dullStar = null;
-    let fullStar = null;
-    if (i >= rating) {
-      dullStar = document.createElement("img");
-      dullStar.setAttribute("src", "../assets/star.svg");
-      dullStar.className = "dullStar star";
-      ele.appendChild(dullStar);
-    } else {
-      fullStar = document.createElement("img");
-      fullStar.setAttribute("src", "../assets/star.svg");
-      fullStar.className = "star";
-      ele.appendChild(fullStar);
-    }
-  }
-};
-
-const displayToggle = () => {
-  console.log("clicked")
-  var x = document.getElementById("cartDiv");
-  console.log(x)
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
+import loadJSON from "./helpers/loadJSON.js"
+import rating from "./helpers/rating.js"
+import {cartTag, mouseOffAddRemoveButton, mouseOverAddRemoveButton} from "./helpers/eventHandlers.js"
 
 loadJSON(
   "../server/inventoryData.json",
@@ -60,30 +19,48 @@ loadJSON(
       let removeCart = document.createElement("div");
 
       newImg.setAttribute("src", `${element.image}`);
-      parentDiv.onclick = () => {
-        const id = i
-        console.log(`clicked  cartDiv${id}`)
-        var x = document.getElementById(`cartDiv${id}`);
-        console.log(x)
-        if (x.style.display === "none") {
-          x.style.display = "block";
-        } else {
-          x.style.display = "none";
-        }
-        var y = document.getElementById(`addCart${id}`);
-        var z = document.getElementById(`removeCart${id}`);
-        console.log(x)
-        if (y.style.display === "block") {
-          y.style.display = "none";
-          z.style.display = "block"
-        } else {
-          z.style.display = "none";
-          y.style.display = "block"
-        }
-      }
-      cartDiv.setAttribute("style", "display:none;")
-      addCart.setAttribute("style", "display:block;")
-      removeCart.setAttribute("style", "display:none;")
+      imgDiv.onclick = cartTag
+      //() => {
+      //   let id = i;
+      //   console.log(`clicked  cartDiv${id}`);
+      //   let x = document.getElementById(`cartDiv${id}`);
+      //   if (x.style.display === "none") {
+      //     x.style.display = "block";
+      //   } else {
+      //     x.style.display = "none";
+      //   }
+      //   let y = document.getElementById(`addCart${id}`);
+      //   let z = document.getElementById(`removeCart${id}`);
+      //   if (y.style.display === "block") {
+      //     y.style.display = "none";
+      //     z.style.display = "block";
+      //   } else {
+      //     z.style.display = "none";
+      //     y.style.display = "block";
+      //   }
+      // };
+      imgDiv.onmouseover = mouseOverAddRemoveButton
+      // () => {
+      //   let id = i;
+      //   let add = document.getElementById(`addCart${id}`);
+      //   let remove = document.getElementById(`removeCart${id}`);
+
+      //   add.style.opacity = 1;
+      //   remove.style.opacity = 1;
+      // };
+      imgDiv.onmouseout = mouseOffAddRemoveButton
+      // () => {
+      //   let id = i;
+      //   let add = document.getElementById(`addCart${id}`);
+      //   let remove = document.getElementById(`removeCart${id}`);
+
+      //   add.style.opacity = 0;
+      //   remove.style.opacity = 0;
+      // };
+
+      cartDiv.setAttribute("style", "display:none;");
+      addCart.setAttribute("style", "display:block;opacity:0;");
+      removeCart.setAttribute("style", "display:none;opacity:0;");
 
       titleDiv.className = "title";
       priceDiv.className = "price";
@@ -92,17 +69,16 @@ loadJSON(
       ratingDiv.className = "rating";
       flowerInfo.className = "flowerInfo";
       cartDiv.id = `cartDiv${i}`;
-      cartDiv.className = "cartDiv"
+      cartDiv.className = "cartDiv";
       imgDiv.className = "imgDiv";
-      addCart.id = `addCart${i}`
+      addCart.id = `addCart${i}`;
       addCart.className = "addCart toggle";
-      removeCart.id = `removeCart${i}`
+      removeCart.id = `removeCart${i}`;
       removeCart.className = "removeCart toggle";
 
       let title = document.createTextNode(element.name);
       titleDiv.appendChild(title);
       let price = document.createTextNode(
-        // export this
         (element.price / 100).toLocaleString("en-US", {
           style: "currency",
           currency: "USD"
@@ -112,11 +88,10 @@ loadJSON(
       let addCartText = document.createTextNode("Add to cart");
       let removeCartText = document.createTextNode("Remove from cart");
 
-
       priceDiv.appendChild(price);
       cartDiv.appendChild(inCart);
-      addCart.appendChild(addCartText)
-      removeCart.appendChild(removeCartText)
+      addCart.appendChild(addCartText);
+      removeCart.appendChild(removeCartText);
 
       flowerInfo.appendChild(titleDiv);
       flowerInfo.appendChild(priceDiv);
@@ -132,10 +107,8 @@ loadJSON(
 
       let currentDiv = document.getElementById("div1");
       currentDiv.appendChild(parentDiv);
-      console.log(i)
-      i++
-      console.log(i)
-    })
+      i++;
+    });
     i = 1;
   },
   function(xhr) {

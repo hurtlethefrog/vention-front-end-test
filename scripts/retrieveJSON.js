@@ -32,9 +32,21 @@ const rating = (ele, rating) => {
   }
 };
 
+const displayToggle = () => {
+  console.log("clicked")
+  var x = document.getElementById("cartDiv");
+  console.log(x)
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
 loadJSON(
   "../server/inventoryData.json",
   function(data) {
+    let i = 1;
     data.map(element => {
       let parentDiv = document.createElement("div");
       let newImg = document.createElement("img");
@@ -48,6 +60,30 @@ loadJSON(
       let removeCart = document.createElement("div");
 
       newImg.setAttribute("src", `${element.image}`);
+      parentDiv.onclick = () => {
+        const id = i
+        console.log(`clicked  cartDiv${id}`)
+        var x = document.getElementById(`cartDiv${id}`);
+        console.log(x)
+        if (x.style.display === "none") {
+          x.style.display = "block";
+        } else {
+          x.style.display = "none";
+        }
+        var y = document.getElementById(`addCart${id}`);
+        var z = document.getElementById(`removeCart${id}`);
+        console.log(x)
+        if (y.style.display === "block") {
+          y.style.display = "none";
+          z.style.display = "block"
+        } else {
+          z.style.display = "none";
+          y.style.display = "block"
+        }
+      }
+      cartDiv.setAttribute("style", "display:none;")
+      addCart.setAttribute("style", "display:block;")
+      removeCart.setAttribute("style", "display:none;")
 
       titleDiv.className = "title";
       priceDiv.className = "price";
@@ -55,9 +91,12 @@ loadJSON(
       newImg.className = "flowerImage";
       ratingDiv.className = "rating";
       flowerInfo.className = "flowerInfo";
-      cartDiv.className = "cartDiv";
+      cartDiv.id = `cartDiv${i}`;
+      cartDiv.className = "cartDiv"
       imgDiv.className = "imgDiv";
+      addCart.id = `addCart${i}`
       addCart.className = "addCart toggle";
+      removeCart.id = `removeCart${i}`
       removeCart.className = "removeCart toggle";
 
       let title = document.createTextNode(element.name);
@@ -93,7 +132,11 @@ loadJSON(
 
       let currentDiv = document.getElementById("div1");
       currentDiv.appendChild(parentDiv);
-    });
+      console.log(i)
+      i++
+      console.log(i)
+    })
+    i = 1;
   },
   function(xhr) {
     console.error(xhr);

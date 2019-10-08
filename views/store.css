@@ -16,7 +16,7 @@ body {
 #div1 {
   display: flex;
   justify-content: space-between;
-  margin: auto
+  margin: auto;
 }
 
 .imgDiv {
@@ -75,9 +75,9 @@ body {
 .border {
   border-top: 1px solid lightgrey;
   width: 85%;
-  left:15%;
+  left: 15%;
   margin: 0 auto;
-  padding-bottom: 14px
+  padding-bottom: 14px;
 }
 
 .flowerInfo {

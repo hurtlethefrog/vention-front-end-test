@@ -16,6 +16,7 @@ body {
 #div1 {
   display: flex;
   justify-content: space-between;
+  margin: auto
 }
 
 .imgDiv {
@@ -24,25 +25,20 @@ body {
 }
 
 .flowerImage {
-  border-bottom: 1px solid lightgrey;
   transition: opacity 0.5s;
   padding: 20px;
-}
-
-.flowerImage:hover {
-  opacity: 0.5;
 }
 
 .removeCart {
   background: #42e695;
   top: 47%;
-  left: 38%;
+  left: 34%;
 }
 
 .addCart {
   background: #3dd187;
   top: 47%;
-  left: 42%;
+  left: 40%;
 }
 
 .toggle {
@@ -50,14 +46,11 @@ body {
   color: white;
   position: absolute;
   padding: 10px;
-  border-radius: 2px;
+  border-radius: 3px;
   white-space: nowrap;
   cursor: pointer;
-  margin: 0 auto;
-}
-
-.toggle:hover {
-  opacity: 1;
+  font-size: 1.3rem;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .cartDiv {
@@ -74,6 +67,14 @@ body {
   font-size: 0.9rem;
   top: 10px;
   cursor: default;
+}
+
+.border {
+  border-top: 1px solid lightgrey;
+  width: 85%;
+  left:15%;
+  margin: 0 auto;
+  padding-bottom: 14px
 }
 
 .flowerInfo {

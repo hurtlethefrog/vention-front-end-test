@@ -9,42 +9,57 @@ loadJSON(
     let i = 1;
     data.map(element => {
       // creating all the html elements
-      let parentDiv = document.createElement("div");
+      let parentDiv = document.createElement("article");
       let newImg = document.createElement("img");
       let imgDiv = document.createElement("div");
       let priceDiv = document.createElement("div");
       let ratingDiv = document.createElement("div");
       let titleDiv = document.createElement("div");
-      let flowerInfo = document.createElement("div");
+      let borderDiv = document.createElement("div")
+      let flowerInfo = document.createElement("section");
       let cartDiv = document.createElement("div");
       let addCart = document.createElement("div");
       let removeCart = document.createElement("div");
+
       //adding img src
       newImg.setAttribute("src", `${element.image}`);
 
-      //event handlers not handled by css
-      imgDiv.onclick = cartTag
-      imgDiv.onmouseover = mouseOverAddRemoveButton
-      imgDiv.onmouseout = mouseOffAddRemoveButton
+      //event handlers that are not handled by css
+      newImg.onclick = cartTag
+      addCart.onclick = cartTag
+      removeCart.onclick = cartTag
+      addCart.onmouseover = mouseOverAddRemoveButton
+      removeCart.onmouseover = mouseOverAddRemoveButton
+      newImg.onmouseover = mouseOverAddRemoveButton
+      newImg.onmouseout = mouseOffAddRemoveButton
+    
 
       //adding inline style for visibility
       cartDiv.setAttribute("style", "display:none;");
       addCart.setAttribute("style", "display:block;opacity:0;");
       removeCart.setAttribute("style", "display:none;opacity:0;");
+      newImg.setAttribute("value", i)
+      addCart.setAttribute("value", i)
+      removeCart.setAttribute("value", i)
 
       //class names and ids
       titleDiv.className = "title";
       priceDiv.className = "price";
       parentDiv.className = "flowerCard";
       newImg.className = "flowerImage";
+      newImg.id = `flower${i}`
       ratingDiv.className = "rating";
       flowerInfo.className = "flowerInfo";
+      borderDiv.className = "border"
       cartDiv.id = `cartDiv${i}`;
       cartDiv.className = "cartDiv";
       imgDiv.className = "imgDiv";
+      imgDiv.value = i
       addCart.id = `addCart${i}`;
       addCart.className = "addCart toggle";
+      addCart.value = i
       removeCart.id = `removeCart${i}`;
+      removeCart.value = i
       removeCart.className = "removeCart toggle";
 
       //text nodes
@@ -67,6 +82,7 @@ loadJSON(
       removeCart.appendChild(removeCartText);
 
       //assembling html elements
+      flowerInfo.appendChild(borderDiv)
       flowerInfo.appendChild(titleDiv);
       flowerInfo.appendChild(priceDiv);
       flowerInfo.appendChild(ratingDiv);
@@ -86,7 +102,6 @@ loadJSON(
       //increment itteration
       i++;
     });
-    i = 1;
   },
   function(xhr) {
     console.error(xhr);

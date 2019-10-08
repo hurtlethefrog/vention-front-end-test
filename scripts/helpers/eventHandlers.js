@@ -1,6 +1,5 @@
-const cartTag = () => {
-  let id = i;
-  console.log(`clicked  cartDiv${id}`);
+const cartTag = ev => {
+  let id = ev.target.attributes.value.value;
   let x = document.getElementById(`cartDiv${id}`);
   if (x.style.display === "none") {
     x.style.display = "block";
@@ -18,22 +17,26 @@ const cartTag = () => {
   }
 };
 
-const mouseOverAddRemoveButton = () => {
-  let id = i;
+const mouseOverAddRemoveButton = ev => {
+  let id = ev.target.attributes.value.value;
   let add = document.getElementById(`addCart${id}`);
   let remove = document.getElementById(`removeCart${id}`);
-
+  let image = document.getElementById(`flower${id}`)
+  
+  image.style.opacity = .5
   add.style.opacity = 1;
   remove.style.opacity = 1;
 };
 
-const mouseOffAddRemoveButton = () => {
-  let id = i;
+const mouseOffAddRemoveButton = ev => {
+  let id = ev.target.attributes.value.value;
   let add = document.getElementById(`addCart${id}`);
   let remove = document.getElementById(`removeCart${id}`);
-
+  let image = document.getElementById(`flower${id}`)
+  
+  image.style.opacity = 1
   add.style.opacity = 0;
   remove.style.opacity = 0;
 };
 
-export {cartTag, mouseOffAddRemoveButton, mouseOverAddRemoveButton}
+export { cartTag, mouseOffAddRemoveButton, mouseOverAddRemoveButton };

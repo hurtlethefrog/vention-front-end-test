@@ -1,11 +1,15 @@
-import loadJSON from "./helpers/loadJSON.js"
-import rating from "./helpers/rating.js"
-import {cartTag, mouseOffAddRemoveButton, mouseOverAddRemoveButton} from "./helpers/eventHandlers.js"
+import loadJSON from "./helpers/loadJSON.js";
+import rating from "./helpers/rating.js";
+import {
+  cartTag,
+  mouseOffAddRemoveButton,
+  mouseOverAddRemoveButton
+} from "./helpers/eventHandlers.js";
 
 loadJSON(
   "../server/inventoryData.json",
   function(data) {
-    //used to track itteration of map function  
+    //used to track itteration of map function
     let i = 1;
     data.map(element => {
       // creating all the html elements
@@ -15,7 +19,7 @@ loadJSON(
       let priceDiv = document.createElement("div");
       let ratingDiv = document.createElement("div");
       let titleDiv = document.createElement("div");
-      let borderDiv = document.createElement("div")
+      let borderDiv = document.createElement("div");
       let flowerInfo = document.createElement("section");
       let cartDiv = document.createElement("div");
       let addCart = document.createElement("div");
@@ -25,46 +29,41 @@ loadJSON(
       newImg.setAttribute("src", `${element.image}`);
 
       //event handlers that are not handled by css
-      newImg.onclick = cartTag
-      addCart.onclick = cartTag
-      removeCart.onclick = cartTag
-      addCart.onmouseover = mouseOverAddRemoveButton
-      removeCart.onmouseover = mouseOverAddRemoveButton
-      newImg.onmouseover = mouseOverAddRemoveButton
-      newImg.onmouseout = mouseOffAddRemoveButton
-    
+      newImg.onclick = cartTag;
+      addCart.onclick = cartTag;
+      removeCart.onclick = cartTag;
+      addCart.onmouseover = mouseOverAddRemoveButton;
+      removeCart.onmouseover = mouseOverAddRemoveButton;
+      newImg.onmouseover = mouseOverAddRemoveButton;
+      newImg.onmouseout = mouseOffAddRemoveButton;
 
       //adding inline style for visibility
       cartDiv.setAttribute("style", "display:none;");
       addCart.setAttribute("style", "display:block;opacity:0;");
       removeCart.setAttribute("style", "display:none;opacity:0;");
-      newImg.setAttribute("value", i)
-      addCart.setAttribute("value", i)
-      removeCart.setAttribute("value", i)
+      newImg.setAttribute("value", i);
+      addCart.setAttribute("value", i);
+      removeCart.setAttribute("value", i);
 
       //class names and ids
       titleDiv.className = "title";
       priceDiv.className = "price";
       parentDiv.className = "flowerCard";
       newImg.className = "flowerImage";
-      newImg.id = `flower${i}`
+      newImg.id = `flower${i}`;
       ratingDiv.className = "rating";
       flowerInfo.className = "flowerInfo";
-      borderDiv.className = "border"
+      borderDiv.className = "border";
       cartDiv.id = `cartDiv${i}`;
       cartDiv.className = "cartDiv";
       imgDiv.className = "imgDiv";
-      imgDiv.value = i
       addCart.id = `addCart${i}`;
       addCart.className = "addCart toggle";
-      addCart.value = i
       removeCart.id = `removeCart${i}`;
-      removeCart.value = i
       removeCart.className = "removeCart toggle";
 
       //text nodes
       let title = document.createTextNode(element.name);
-      titleDiv.appendChild(title);
       let price = document.createTextNode(
         (element.price / 100).toLocaleString("en-US", {
           style: "currency",
@@ -76,13 +75,14 @@ loadJSON(
       let removeCartText = document.createTextNode("Remove from cart");
 
       //placing text in correct divs
+      titleDiv.appendChild(title);
       priceDiv.appendChild(price);
       cartDiv.appendChild(inCart);
       addCart.appendChild(addCartText);
       removeCart.appendChild(removeCartText);
 
       //assembling html elements
-      flowerInfo.appendChild(borderDiv)
+      flowerInfo.appendChild(borderDiv);
       flowerInfo.appendChild(titleDiv);
       flowerInfo.appendChild(priceDiv);
       flowerInfo.appendChild(ratingDiv);

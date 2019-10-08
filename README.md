@@ -1,5 +1,9 @@
-# Welcome to the Vention Interview!
-The goal of this test is to create some interactive cards using HTML, CSS/SCSS, and JavaScript.
+# To Run My Submission
+
+python -m SimpleHTTPServer 8000
+
+goto store/html route
+
 
 ## Rules
 - No frameworks. Vanilla JS and CSS/SCSS only (no Bootstrap).
@@ -21,8 +25,3 @@ resets the card back to its original state.
 ![alt text](/states/state-2.png "Logo Title Text 1")
 
 ![alt text](/states/state-3.png "Logo Title Text 1")
-
-### to run
-
-python -m SimpleHTTPServer 8000
-goto store/html
